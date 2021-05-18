@@ -1,12 +1,7 @@
 <?php require_once ('../../../private/initialize.php'); ?>
 
 <?php
- $pages = [
-     ['id' => '1', 'position' => '1', 'visible' => 'true', 'menu_name' => 'Globe Bank'],
-     ['id' => '2', 'position' => '2', 'visible' => 'true', 'menu_name' => 'History'],
-     ['id' => '3', 'position' => '3', 'visible' => 'true', 'menu_name' => 'Leadership'],
-     ['id' => '2', 'position' => '2', 'visible' => 'true', 'menu_name' => 'Contact Us'],
- ]
+ $pages_set = find_all_pages();
 ?>
 
 <?php $page_title = 'page' ; ?>
@@ -24,6 +19,7 @@
 
             <tr>
                 <th>Id</th>
+                <th>Subject id</th>
                 <th>Position</th>
                 <th>Visible</th>
                 <th>Name</th>
@@ -32,9 +28,10 @@
                 <th></th>
             </tr>
 
-            <?php foreach ($pages as $page): ?>
+            <?php while ($page = mysqli_fetch_assoc($pages_set)){ ?>
             <tr>
                 <td><?php echo h($page['id']); ?></td>
+                <td><?php echo h($page['subject_id']); ?></td>
                 <td><?php echo h($page['position']); ?></td>
                 <td><?php echo $page['visible'] == 1 ? 'true' : 'false'; ?></td>
                 <td><?php echo h($page['menu_name']) ?></td>
@@ -43,8 +40,11 @@
                 <td><a class="action" href="">Delete</a></td>
 
             </tr>
-            <?php endforeach; ?>
+            <?php } ?>
         </table>
+
+        <?php mysqli_free_result($pages_set); ?>
+
     </div>
 </div>
 
