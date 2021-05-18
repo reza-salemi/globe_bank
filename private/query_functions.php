@@ -50,6 +50,28 @@ function insert_subject($menu_name,$position,$visible){
     }
 }
 
+function update_subject($subject)
+{
+    global  $db;
+
+    $sql = "UPDATE subjects SET ";
+    $sql .= "menu_name = '" .$subject['menu_name']. "',";
+    $sql .= "position = '" .$subject['position']. "',";
+    $sql .= "visible = '" .$subject['visible']. "'";
+    $sql .= "WHERE id = '" .$subject['id']. "'";
+    $result = mysqli_query($db, $sql);
+
+    if($result){
+        return true;
+    }
+    else{
+        mysqli_error($db);
+        db_disconnect($db);
+        exit();
+    }
+
+}
+
 function find_all_pages()
 {
     global $db;
