@@ -1,11 +1,14 @@
+
 <?php
 
-    function find_all_subject()
-    {
-        global $db;
-        $sql = "SELECT * FROM subjetcs ";
-        $sql .= "ORDER BY position ASC";
-        $result = mysqli_connect($db,$sql);
-        return $result;
-    }
+function find_all_subjects()
+{
+    global $db;
+
+    $sql = "SELECT * FROM subjects ";
+    $sql .= "ORDER BY position ASC";
+    $result = mysqli_query($db, $sql);
+    return $result;
+}
+
 ?>
