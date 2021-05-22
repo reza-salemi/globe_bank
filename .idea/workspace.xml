@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="604cc41f-94ae-45b5-a1dc-341d79a4b6ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/shared/public_navigation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/private/shared/static_homepage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/homepage_assets/family_buying_home_L30707.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/homepage_assets/father_daughter_finances_L30717.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/homepage_assets/owner_salon_L30714.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/homepage_assets/world_in_hands_900px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/about us_96582054.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/banking_57278269.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/bizchecking_86519574.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/bizloans_539438468.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/commercial_601015838.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/consumer_78655161.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/contact_dv1060035.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/creditcards_598949380.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/financing_522867260.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/history_643025418.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/homeloans_84513610.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/investments_97489446.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/leadership_469723021.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/merchant_619738814.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/page_assets/treasury_591423262.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/query_functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/query_functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/shared/public_navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/shared/public_navigation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +61,7 @@
       <workItem from="1621341947413" duration="7924000" />
       <workItem from="1621393906397" duration="6908000" />
       <workItem from="1621482265033" duration="7380000" />
-      <workItem from="1621654165100" duration="3954000" />
+      <workItem from="1621654165100" duration="5833000" />
     </task>
     <servers />
   </component>
