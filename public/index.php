@@ -5,11 +5,30 @@ require_once('../private/initialize.php');
 if(isset($_GET['id']))
 {
     $page_id = $_GET['id'];
-    $page = find_page_by_id($page_id);
+    $page = find_page_by_id($page_id,['visible'=>true]);
     if (!$page) {
         redirect_to(url_for('/index.php'));
     }
     $subject_id = $page['subject_id'];
+    $subject = find_subject_by_id($subject_id,['visible'=>true]);
+    if(!$subject){
+        redirect_to(url_for('/index.php'));
+    }
+}
+elseif (isset($_GET['subject_id']))
+{
+    $subject_id = $_GET['subject_id'];
+    $subject = find_subject_by_id($subject_id,['visible'=>true]);
+    if(!$subject){
+        redirect_to(url_for('/index.php'));
+    }
+    $page_set = find_pages_by_subject_id($subject_id,['visible'=>true]);
+    $page=mysqli_fetch_assoc($page_set);
+    mysqli_free_result($page_set);
+    if(!$page){
+        redirect_to(url_for('/index.php'));
+    }
+    $page_id = $page['id'];
 }
 else{
 
@@ -29,8 +48,8 @@ else{
           // show the page from database
           if(isset($page))
           {
-              // TODO add html scaping back in
-              echo $page['content'];
+              $allowed_tages = '<div><img><h1><h2><p><br><strong><em><ul><li>';
+              echo strip_tags($page['content'],$allowed_tages);
           }
           else{
               // show home page
