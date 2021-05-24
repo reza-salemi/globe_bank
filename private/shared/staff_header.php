@@ -17,6 +17,9 @@ if(!isset($page_title)) { ($page_title = 'staff area');}
 
     <navigation>
         <ul>
+            <li>Users: <?php echo $_SESSION['username'] ?? ''; ?></li>
             <li><a href="<?php echo url_for('/staff/index.php'); ?>">Menu</a></li>
+            <li><a href="<?php echo url_for('/staff/logout.php'); ?>">Log out</a></li>
         </ul>
     </navigation>
+    <?php echo display_session_message(); ?>

@@ -15,6 +15,7 @@ if(is_post_request()) {
 
   if($result === true){
       $new_id = mysqli_insert_id($db);
+      $_SESSION['message'] = 'The page was created successfully.';
       redirect_to(url_for('/staff/pages/show.php?id=' . $new_id));
   }
   else{

@@ -1,5 +1,6 @@
 <?php
 ob_start(); // out put buffering is turned on
+session_start();
 // Assign file path to php constants
 // __FILE__ return the current path to this file
 // dirname() returns the path to the parent directory
