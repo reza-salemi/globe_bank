@@ -49,7 +49,7 @@ $page_set = find_pages_by_subject_id($id);
                     <th>Position</th>
                     <th>Visible</th>
                     <th>Name</th>
-                    <th>&nbsp;</th>
+                    <th></th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
                 </tr>

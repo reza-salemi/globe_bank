@@ -299,6 +299,22 @@ function find_pages_by_subject_id($subject_id,$options=[]) {
     return $result;
 }
 
+function count_pages_by_subject_id($subject_id,$options=[]) {
+    global $db;
+    $visible = $options['visible'] ?? false ;
+    $sql = "SELECT COUNT(id) FROM pages ";
+    $sql .= "WHERE subject_id='" . db_escape($db,$subject_id) . "' ";
+    if($visible){
+        $sql .="AND visible = true ";
+    }
+    $sql .= "ORDER by position ASC";
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_row($result);
+    mysqli_free_result($result);
+    $count = $row[0];
+    return $count;
+}
+
 function find_all_admins() {
     global $db;
 
