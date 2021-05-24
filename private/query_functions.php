@@ -20,7 +20,7 @@ function find_subject_by_id($id,$options=[])
     global $db;
     $visible = $options['visible'] ?? false;
     $sql = "SELECT * FROM subjects ";
-    $sql .= "WHERE id='" . db_scape($db,$id ) . "' ";
+    $sql .= "WHERE id='" . db_escape($db,$id ) . "' ";
     if($visible){
         $sql .= "AND visible = true";
     }
@@ -74,9 +74,9 @@ function insert_subject($subject){
     $sql = "INSERT INTO subjects ";
     $sql .= "(menu_name,position,visible) ";
     $sql .= "VALUES (";
-    $sql .="'" . db_scape($db,$subject['menu_name']) . "',";
-    $sql .="'" . db_scape($db,$subject['position']) . "',";
-    $sql .="'" . db_scape($db,$subject['visible']) . "'";
+    $sql .="'" . db_escape($db,$subject['menu_name']) . "',";
+    $sql .="'" . db_escape($db,$subject['position']) . "',";
+    $sql .="'" . db_escape($db,$subject['visible']) . "'";
     $sql .= ")";
     $result = mysqli_query($db, $sql);
 
@@ -101,10 +101,10 @@ function update_subject($subject)
     }
 
     $sql = "UPDATE subjects SET ";
-    $sql .= "menu_name = '" . db_scape($db,$subject['menu_name']) . "',";
-    $sql .= "position = '" . db_scape($db,$subject['position']) . "',";
-    $sql .= "visible = '" . db_scape($db,$subject['visible']) . "'";
-    $sql .= "WHERE id = '" . db_scape($db,$subject['id']) . "'";
+    $sql .= "menu_name = '" . db_escape($db,$subject['menu_name']) . "',";
+    $sql .= "position = '" . db_escape($db,$subject['position']) . "',";
+    $sql .= "visible = '" . db_escape($db,$subject['visible']) . "'";
+    $sql .= "WHERE id = '" . db_escape($db,$subject['id']) . "'";
     $result = mysqli_query($db, $sql);
 
     if($result){
@@ -123,7 +123,7 @@ function delete_subject($id)
     global $db;
 
     $sql = "DELETE FROM subjects ";
-    $sql .= "WHERE id='" . db_scape($db,$id) . "' ";
+    $sql .= "WHERE id='" . db_escape($db,$id) . "' ";
     $sql .= "LIMIT 1";
     $result = mysqli_query($db, $sql);
 
@@ -196,7 +196,7 @@ function find_page_by_id($id,$options=[]) {
     global $db;
     $visible = $options['visible'] ?? false;
     $sql = "SELECT * FROM pages ";
-    $sql .= "WHERE id='" . db_scape($db,$id) . "' ";
+    $sql .= "WHERE id='" . db_escape($db,$id) . "' ";
     if($visible){
         $sql .= "AND visible = true";
     }
@@ -218,11 +218,11 @@ function insert_page($page) {
     $sql = "INSERT INTO pages ";
     $sql .= "(subject_id, menu_name, position, visible, content) ";
     $sql .= "VALUES (";
-    $sql .= "'" . db_scape($db,$page['subject_id']) . "',";
-    $sql .= "'" . db_scape($db,$page['menu_name']) . "',";
-    $sql .= "'" . db_scape($db,$page['position']) . "',";
-    $sql .= "'" . db_scape($db,$page['visible']) . "',";
-    $sql .= "'" . db_scape($db,$page['content']) . "'";
+    $sql .= "'" . db_escape($db,$page['subject_id']) . "',";
+    $sql .= "'" . db_escape($db,$page['menu_name']) . "',";
+    $sql .= "'" . db_escape($db,$page['position']) . "',";
+    $sql .= "'" . db_escape($db,$page['visible']) . "',";
+    $sql .= "'" . db_escape($db,$page['content']) . "'";
     $sql .= ")";
     $result = mysqli_query($db, $sql);
     // For INSERT statements, $result is true/false
@@ -245,12 +245,12 @@ function update_page($page) {
     }
 
     $sql = "UPDATE pages SET ";
-    $sql .= "subject_id='" . db_scape($db,$page['subject_id']) . "', ";
-    $sql .= "menu_name='" . db_scape($db,$page['menu_name']) . "', ";
-    $sql .= "position='" . db_scape($db,$page['position']) . "', ";
-    $sql .= "visible='" . db_scape($db,$page['visible']) . "', ";
-    $sql .= "content='" . db_scape($db,$page['content']) . "' ";
-    $sql .= "WHERE id='" . db_scape($db,$page['id']) . "' ";
+    $sql .= "subject_id='" . db_escape($db,$page['subject_id']) . "', ";
+    $sql .= "menu_name='" . db_escape($db,$page['menu_name']) . "', ";
+    $sql .= "position='" . db_escape($db,$page['position']) . "', ";
+    $sql .= "visible='" . db_escape($db,$page['visible']) . "', ";
+    $sql .= "content='" . db_escape($db,$page['content']) . "' ";
+    $sql .= "WHERE id='" . db_escape($db,$page['id']) . "' ";
     $sql .= "LIMIT 1";
 
     $result = mysqli_query($db, $sql);
@@ -270,7 +270,7 @@ function delete_page($id) {
     global $db;
 
     $sql = "DELETE FROM pages ";
-    $sql .= "WHERE id='" . db_scape($db,$id) . "' ";
+    $sql .= "WHERE id='" . db_escape($db,$id) . "' ";
     $sql .= "LIMIT 1";
     $result = mysqli_query($db, $sql);
 
@@ -289,7 +289,7 @@ function find_pages_by_subject_id($subject_id,$options=[]) {
     global $db;
     $visible = $options['visible'] ?? false ;
     $sql = "SELECT * FROM pages ";
-    $sql .= "WHERE subject_id='" . db_scape($db,$subject_id) . "' ";
+    $sql .= "WHERE subject_id='" . db_escape($db,$subject_id) . "' ";
     if($visible){
         $sql .="AND visible = true ";
     }
@@ -298,6 +298,17 @@ function find_pages_by_subject_id($subject_id,$options=[]) {
     confirm_result_set($result);
     return $result;
 }
+
+function find_all_admins() {
+    global $db;
+
+    $sql = "SELECT * FROM admins ";
+    $sql .= "ORDER BY last_name ASC, first_name ASC";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+}
+
 
 function find_admin_by_id($id) {
     global $db;
@@ -312,54 +323,69 @@ function find_admin_by_id($id) {
     return $admin; // returns an assoc. array
 }
 
-function validate_admin($admin) {
+function find_admin_by_username($username) {
+    global $db;
 
+    $sql = "SELECT * FROM admins ";
+    $sql .= "WHERE username='" . db_escape($db, $username) . "' ";
+    $sql .= "LIMIT 1";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $admin = mysqli_fetch_assoc($result); // find first
+    mysqli_free_result($result);
+    return $admin; // returns an assoc. array
+}
+
+function validate_admin($admin,$options=[]) {
+    $password_required = $options['password_required'] ?? true;
     if(is_blank($admin['first_name'])) {
         $errors[] = "First name cannot be blank.";
     } elseif (!has_length($admin['first_name'], array('min' => 2, 'max' => 255))) {
         $errors[] = "First name must be between 2 and 255 characters.";
     }
+    if($password_required){
+        if(is_blank($admin['last_name'])) {
+            $errors[] = "Last name cannot be blank.";
+        } elseif (!has_length($admin['last_name'], array('min' => 2, 'max' => 255))) {
+            $errors[] = "Last name must be between 2 and 255 characters.";
+        }
 
-    if(is_blank($admin['last_name'])) {
-        $errors[] = "Last name cannot be blank.";
-    } elseif (!has_length($admin['last_name'], array('min' => 2, 'max' => 255))) {
-        $errors[] = "Last name must be between 2 and 255 characters.";
-    }
+        if(is_blank($admin['email'])) {
+            $errors[] = "Email cannot be blank.";
+        } elseif (!has_length($admin['email'], array('max' => 255))) {
+            $errors[] = "Last name must be less than 255 characters.";
+        } elseif (!has_valid_email_format($admin['email'])) {
+            $errors[] = "Email must be a valid format.";
+        }
 
-    if(is_blank($admin['email'])) {
-        $errors[] = "Email cannot be blank.";
-    } elseif (!has_length($admin['email'], array('max' => 255))) {
-        $errors[] = "Last name must be less than 255 characters.";
-    } elseif (!has_valid_email_format($admin['email'])) {
-        $errors[] = "Email must be a valid format.";
-    }
+        if(is_blank($admin['username'])) {
+            $errors[] = "Username cannot be blank.";
+        } elseif (!has_length($admin['username'], array('min' => 8, 'max' => 255))) {
+            $errors[] = "Username must be between 8 and 255 characters.";
+        } elseif (!has_unique_username($admin['username'], $admin['id'] ?? 0)) {
+            $errors[] = "Username not allowed. Try another.";
+        }
 
-    if(is_blank($admin['username'])) {
-        $errors[] = "Username cannot be blank.";
-    } elseif (!has_length($admin['username'], array('min' => 8, 'max' => 255))) {
-        $errors[] = "Username must be between 8 and 255 characters.";
-    } elseif (!has_unique_username($admin['username'], $admin['id'] ?? 0)) {
-        $errors[] = "Username not allowed. Try another.";
-    }
+        if(is_blank($admin['password'])) {
+            $errors[] = "Password cannot be blank.";
+        } elseif (!has_length($admin['password'], array('min' => 12))) {
+            $errors[] = "Password must contain 12 or more characters";
+        } elseif (!preg_match('/[A-Z]/', $admin['password'])) {
+            $errors[] = "Password must contain at least 1 uppercase letter";
+        } elseif (!preg_match('/[a-z]/', $admin['password'])) {
+            $errors[] = "Password must contain at least 1 lowercase letter";
+        } elseif (!preg_match('/[0-9]/', $admin['password'])) {
+            $errors[] = "Password must contain at least 1 number";
+        } elseif (!preg_match('/[^A-Za-z0-9\s]/', $admin['password'])) {
+            $errors[] = "Password must contain at least 1 symbol";
+        }
 
-    if(is_blank($admin['password'])) {
-        $errors[] = "Password cannot be blank.";
-    } elseif (!has_length($admin['password'], array('min' => 12))) {
-        $errors[] = "Password must contain 12 or more characters";
-    } elseif (!preg_match('/[A-Z]/', $admin['password'])) {
-        $errors[] = "Password must contain at least 1 uppercase letter";
-    } elseif (!preg_match('/[a-z]/', $admin['password'])) {
-        $errors[] = "Password must contain at least 1 lowercase letter";
-    } elseif (!preg_match('/[0-9]/', $admin['password'])) {
-        $errors[] = "Password must contain at least 1 number";
-    } elseif (!preg_match('/[^A-Za-z0-9\s]/', $admin['password'])) {
-        $errors[] = "Password must contain at least 1 symbol";
-    }
+        if(is_blank($admin['confirm_password'])) {
+            $errors[] = "Confirm password cannot be blank.";
+        } elseif ($admin['password'] !== $admin['confirm_password']) {
+            $errors[] = "Password and confirm password must match.";
+        }
 
-    if(is_blank($admin['confirm_password'])) {
-        $errors[] = "Confirm password cannot be blank.";
-    } elseif ($admin['password'] !== $admin['confirm_password']) {
-        $errors[] = "Password and confirm password must match.";
     }
 
     return $errors;
@@ -373,7 +399,7 @@ function insert_admin($admin) {
         return $errors;
     }
 
-    $hashed_password = $admin['password'];
+    $hashed_password = password_hash($admin['password'], PASSWORD_BCRYPT);
 
     $sql = "INSERT INTO admins ";
     $sql .= "(first_name, last_name, email, username, hashed_password) ";
@@ -399,19 +425,21 @@ function insert_admin($admin) {
 
 function update_admin($admin) {
     global $db;
-
-    $errors = validate_admin($admin);
+    $password_sent = !is_blank($admin['password']);
+    $errors = validate_admin($admin,['password_required' => $password_sent]);
     if (!empty($errors)) {
         return $errors;
     }
 
-    $hashed_password = $admin['password'];
+    $hashed_password = password_hash($admin['password'], PASSWORD_BCRYPT);
 
     $sql = "UPDATE admins SET ";
     $sql .= "first_name='" . db_escape($db, $admin['first_name']) . "', ";
     $sql .= "last_name='" . db_escape($db, $admin['last_name']) . "', ";
     $sql .= "email='" . db_escape($db, $admin['email']) . "', ";
-    $sql .= "hashed_password='" . db_escape($db, $hashed_password) . "',";
+    if($password_sent){
+        $sql .= "hashed_password='" . db_escape($db, $hashed_password) . "',";
+    }
     $sql .= "username='" . db_escape($db, $admin['username']) . "' ";
     $sql .= "WHERE id='" . db_escape($db, $admin['id']) . "' ";
     $sql .= "LIMIT 1";

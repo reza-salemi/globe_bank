@@ -1,7 +1,7 @@
 <?php
 
 require_once('../../../private/initialize.php');
-
+require_login();
 if(is_post_request()) {
   $subject = [];
   $admin['first_name'] = $_POST['first_name'] ?? '';
